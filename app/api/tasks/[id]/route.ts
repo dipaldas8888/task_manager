@@ -6,10 +6,14 @@ import { cookies } from "next/headers";
 import { taskSchema } from "@/lib/validation";
 import { encrypt } from "@/lib/encrypt";
 
-export async function PUT(req: Request, { params }: any) {
+export async function PUT(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
   await connectDB();
 
   try {
+    const { id } = await params;
     const token = (await cookies()).get("token")?.value;
 
     if (!token)
@@ -17,7 +21,7 @@ export async function PUT(req: Request, { params }: any) {
 
     const decoded: any = verifyToken(token);
 
-    const task = await Task.findById(params.id);
+    const task = await Task.findById(id);
     if (!task)
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
 
@@ -35,7 +39,7 @@ export async function PUT(req: Request, { params }: any) {
     const encryptedDesc = encrypt(body.description);
 
     const updated = await Task.findByIdAndUpdate(
-      params.id,
+      id,
       {
         title: body.title,
         description: encryptedDesc,
@@ -50,10 +54,15 @@ export async function PUT(req: Request, { params }: any) {
   }
 }
 
-export async function DELETE(req: Request, { params }: any) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
   await connectDB();
 
   try {
+    const { id } = await params; // ✅ FIX HERE
+
     const token = (await cookies()).get("token")?.value;
 
     if (!token)
@@ -61,7 +70,7 @@ export async function DELETE(req: Request, { params }: any) {
 
     const decoded: any = verifyToken(token);
 
-    const task = await Task.findById(params.id);
+    const task = await Task.findById(id);
     if (!task)
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
 
@@ -69,10 +78,10 @@ export async function DELETE(req: Request, { params }: any) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    await Task.findByIdAndDelete(params.id);
+    await Task.findByIdAndDelete(id);
 
     return NextResponse.json({ message: "Task deleted successfully" });
-  } catch (err) {
+  } catch (error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
