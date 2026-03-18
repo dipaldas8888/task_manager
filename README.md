@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Task Manager Application (Full Stack)
 
-## Getting Started
+A production-ready Task Management Application built using Next.js, MongoDB, and JWT Authentication.
+This project demonstrates strong understanding of backend architecture, security, authentication, database design, and frontend integration.
 
-First, run the development server:
+🌐 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 Live Website: https://task-manager-nine-nu-32.vercel.app/
+🔗 GitHub Repository: https://github.com/dipaldas8888/task_manager
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📌 Features
+🔐 Authentication & Security
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+User Registration & Login
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+JWT-based authentication
 
-## Learn More
+Secure HTTP-only cookies
 
-To learn more about Next.js, take a look at the following resources:
+Password hashing using bcrypt
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+AES encryption for sensitive data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Protected frontend routes (middleware)
 
-## Deploy on Vercel
+🗂 Task Management
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create, Read, Update, Delete (CRUD) tasks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Each user can access only their own tasks
+
+Task fields:
+
+Title
+
+Description
+
+Status (Pending / Completed)
+
+Created Date
+
+🔍 Advanced Functionalities
+
+Pagination (server-side)
+
+Filter tasks by status
+
+Search tasks by title
+
+Real-time UI updates
+
+🎨 Frontend UI
+
+Clean dashboard layout:
+
+Sidebar
+
+Header
+
+Filters/Search
+
+Task List
+
+Built with Next.js + Tailwind CSS
+
+Icons using Lucide React
+
+🛠 Tech Stack
+Frontend & Backend
+
+Next.js (App Router)
+
+React
+
+TypeScript
+
+Backend & Security
+
+Node.js (via Next.js API routes)
+
+JWT Authentication
+
+bcrypt (password hashing)
+
+CryptoJS (AES encryption)
+
+Database
+
+MongoDB (Mongoose)
+
+Deployment
+
+Vercel (Frontend + Backend)
+
+MongoDB Atlas (Cloud Database)
+
+📁 Folder Structure
+app/
+api/
+auth/
+tasks/
+dashboard/
+layout.tsx
+page.tsx
+login/
+register/
+
+components/
+Sidebar.tsx
+Header.tsx
+TaskCard.tsx
+Filters.tsx
+
+lib/
+db.ts
+auth.ts
+encrypt.ts
+validation.ts
+api.ts
+
+models/
+User.ts
+Task.ts
+
+middleware.ts
+⚙️ Environment Variables
+
+Create a .env.local file:
+
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+AES_SECRET=your_aes_secret
